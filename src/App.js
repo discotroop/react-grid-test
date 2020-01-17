@@ -5,7 +5,14 @@ import './App.css';
 function App() {
   return (
     <div className="App">
-      <Board />
+      <div className="boards">
+        <div> Player 1 
+          <Board />
+        </div>
+        <div> Player 2 (ai)
+          <Board />
+        </div>
+      </div>
     </div>
   );
 }
@@ -14,28 +21,27 @@ class Board extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-
     }
   }
-    // this.state = {
-    //   // fun stuff
-    // }    
-  square(props) {
-    return <div className="box"> {props} </div>
+
+  square(Xcoord, Ycoord) {
+    return <div className="square" key={[Xcoord, Ycoord]}> {Xcoord} {Ycoord} </div>
   }
 
   buildSquares(props) {
     let gameGrid = [];
 
     for (let i = 0; i < props; i++) {
-      gameGrid.push(this.square(i));
+      for (let j = 0; j < props; j++) {
+        gameGrid.push(this.square(i, j));
+      }
     }
     return gameGrid;
   }
 
   render() {
     return <div className="board">
-      {this.buildSquares(64)}
+      {this.buildSquares(8)}
      </div>
   }
 }
