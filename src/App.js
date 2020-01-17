@@ -13,19 +13,32 @@ function App() {
 class Board extends React.Component {
   constructor(props) {
     super(props)
+    this.state = {
+
+    }
   }
     // this.state = {
     //   // fun stuff
     // }    
-  buildDivs() {
-    for (i = 0; i < 64; i++) {
-      
+  square(props) {
+    return <div className="box"> {props} </div>
+  }
+
+  buildSquares(props) {
+    let gameGrid = [];
+
+    for (let i = 0; i < props; i++) {
+      gameGrid.push(this.square(i));
     }
+    return gameGrid;
   }
 
   render() {
-    return <div className="board"> hi </div>
+    return <div className="board">
+      {this.buildSquares(64)}
+     </div>
   }
 }
+
 
 export default App;
